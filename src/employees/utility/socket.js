@@ -23,3 +23,12 @@ function usersAll (call){
 }
 export {usersAll};
 
+function userDell (data){
+
+    socket.on('allUserDell', (res, err)=>{
+        console.log(err);
+    });
+    socket.emit('userDell', data);
+}
+export {userDell};
+

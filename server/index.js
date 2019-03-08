@@ -125,25 +125,15 @@ io.on('connection', (client)=>{
             client.emit('userInsRes', list)
         });
     });
-/*
-    client.on('friendsDell', function (file) {
-        const userId=file.userId;
-        const avatar= file.avatar;
-        const userName= file.userName;
-        const friendId= file.friendId;
-        const friendavatar= file.friendavatar;
-        const friendName= file.friendName;
-        const usUpdate = { friendId: userId, friendavatar: avatar, friendName: userName };
-        const frUpdate = { friendId: friendId, friendavatar: friendavatar, friendName: friendName };
-        ClientChat.findOneAndUpdate( {_id:ObjectId(userId)},{$pullAll:{userFriends: [frUpdate]}} , function(err, result){
+
+    client.on('userDell', function (userId) {
+        usersdb.findOneAndDelete( {_id:ObjectId(userId)}, function(err, result){
             if (err) return console.log(err);
         });
-        ClientChat.findOneAndUpdate( {_id:ObjectId(friendId)},{$pullAll:{userFriends: [usUpdate]}} , function(err, result){
-            if (err) return console.log(err);
-        });
-        client.emit('allFriendsDell')
+        client.emit('allUserDell')
     });
 
+/*
     client.on('friends', function (file) {
         const userId=file.userId;
         const avatar= file.avatar;

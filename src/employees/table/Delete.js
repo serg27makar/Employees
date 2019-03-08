@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { setActionUsersList, setActionBody} from "../../actions/index"
+import {userDell, usersAll} from "../utility/socket"
 
 class Delete extends Component {
 
@@ -9,7 +10,11 @@ class Delete extends Component {
     };
 
     delet = () =>{
-
+        userDell(this.props.userId);
+        usersAll((res) => {
+            this.props.setUserListFunction(res);
+        });
+        this.props.setBodyFunction('')
     };
 
     render() {
@@ -26,6 +31,7 @@ class Delete extends Component {
 function MapStateToProps(state) {
     return {
         usersList: state.userInfo.usersList,
+        userId: state.userInfo.userId,
         visibleBody: state.dbInfo.visibleBody,
     }
 }
