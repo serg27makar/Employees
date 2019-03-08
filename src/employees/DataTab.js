@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import Header from "./table/Header";
 import { setActionUsersList} from "../actions/index"
 import {usersAll} from "./utility/socket";
-import Delete from './table/Delete'
-import Edit from './table/Edit'
-import Toolbar from "../employees/toolbar/Toolbar";
+import Delete from './toolbar/Delete'
+import Edit from './toolbar/Edit'
+import Createuser from "./toolbar/Createuser";
+import Searchuser from "./toolbar/Searchuser";
 import Listuser from './table/Listuser'
+import {Redirect} from 'react-router-dom';
 
 class DataTab extends Component {
     constructor() {
@@ -16,6 +18,9 @@ class DataTab extends Component {
         })
     }
     render() {
+        if (!this.props.adminId || this.props.adminId.length !== 24) {
+            return <Redirect to='/'/>
+        }
         if(this.props.visibleBody === 'del'){
             return (
                 <div id="a">
@@ -28,10 +33,16 @@ class DataTab extends Component {
                     <Edit/>
                 </div>
             );
+        }else if(this.props.visibleBody === 'create') {
+            return (
+                <div id="table">
+                    <Createuser/>
+                </div>
+            );
         }else {
             return (
                 <div id="table">
-                    <Toolbar/>
+                    <Searchuser/>
                     <Header/>
                     <Listuser/>
                 </div>
@@ -40,9 +51,9 @@ class DataTab extends Component {
     }
 }
 
-
 function MapStateToProps(state) {
     return {
+        adminId: state.adminInfo.adminId,
         visibleBody: state.dbInfo.visibleBody,
     }
 }

@@ -74,28 +74,28 @@
     border-radius: 10px;
 }
 #createUser{
-    border-style: groove;
-    background: aliceblue;
     position: fixed;
-    left: 35%;
-    top: 5em;
-    width: 20em;
-    text-align: center;
-    height: 15em;
+    border-style: groove;
     z-index: 1;
+    background: aliceblue;
+    left: 25%;
+    padding: 2em;
+    width: 35em;
+    height: 20em;
+    top: 5em;
 }
 .butDelete{
     border-style: groove;
-    width: 5.1em;
+    width: 3.95em;
     text-align: center;
-    font-size: smaller;
+    font-size: x-large;
     color: red;
 }
 .butEdit{
     border-style: groove;
-    width: 5.1em;
+    width: 3.95em;
     text-align: center;
-    font-size: smaller;
+    font-size: x-large;
     color: green;
 
 }
@@ -114,8 +114,22 @@
     border-style: groove;
     z-index: 1;
     background: aliceblue;
-    left: 40%;
+    left: 25%;
     padding: 2em;
-    width: 25em;
+    width: 35em;
+    height: 20em;
     top: 5em;
+}
+#selecter{
+    width: 20em;
+    font-size: 31px;
+    border-radius: 6px;
+}
+#txtArea{
+    max-width: 46.4em;
+    min-width: 41.2em;
+    max-height: 10em;
+    min-height: 10em;
+    display: inline-table;
+    font-size: medium;
 }

@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import {setActionAdminId, setActionAdminName} from "../actions/index";
 import {Redirect} from 'react-router-dom';
 
-
 class Titul extends Component {
     constructor(props){
         super(props);
@@ -14,18 +13,16 @@ class Titul extends Component {
         }
     }
     componentWillMount(){
-        utilityServerGet(this.startPage);
-    }
-
-    startPage=(call)=>{
-        if(call === 401){
-            console.log(call)
-        }else if(call === 'scm'){
-            console.log(call)
-        }else{
-            this.props.setAdminIdFunction(call._id);
-            this.props.setAdminNameFunction(call.Name);
-        }
+        utilityServerGet((call)=>{
+            if(call === 401){
+                console.log(call)
+            }else if(call === 'scm'){
+                console.log(call)
+            }else{
+                this.props.setAdminIdFunction(call._id);
+                this.props.setAdminNameFunction(call.Name);
+            }
+        })
     };
 
     render() {

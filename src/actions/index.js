@@ -23,6 +23,12 @@ export const setActionUserName = (userName) => {
         userName: userName
     }
 };
+export const setActionUserNotes = (notes) => {
+    return{
+        type: 'SET_USERNOTES',
+        notes: notes
+    }
+};
 export const setActionDepartment = (department) => {
     return {
         type: 'SET_DEPARTMENT',
@@ -36,12 +42,13 @@ export const setActionUsersList = (usersList) => {
     }
 };
 
-export const setActionVisible = (visibleBar) => {
+export const setActionSelectUser = (selectUser) => {
     return {
-        type: 'SET_VISIBLEBAR',
-        visibleBar: visibleBar
+        type: 'SET_SELECTUSER',
+        selectUser: selectUser
     }
 };
+
 export const setActionBody = (visibleBody) => {
     return {
         type: 'SET_VISIBLEBODY',

@@ -3,6 +3,8 @@ const initialState = {
     userName:'',
     department:'',
     usersList:[],
+    notes:'',
+    selectUser:{},
 };
 
 export default function userInfo(state = initialState, action) {
@@ -17,6 +19,11 @@ export default function userInfo(state = initialState, action) {
                 ...state,
                 userName: action.userName
             };
+        case "SET_USERNOTES":
+            return {
+                ...state,
+                notes: action.notes
+            };
         case "SET_DEPARTMENT":
             return {
                 ...state,
@@ -26,6 +33,11 @@ export default function userInfo(state = initialState, action) {
             return {
                 ...state,
                 usersList: action.usersList
+            };
+        case "SET_SELECTUSER":
+            return {
+                ...state,
+                selectUser: action.selectUser
             };
         default:
             return state

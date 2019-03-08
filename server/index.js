@@ -119,8 +119,9 @@ io.on('connection', (client)=>{
 
     client.on('userIns', function (user) {
         const userName =user.userName;
+        const notes =user.notes;
         const department = user.department;
-        const User = {Us:'c', userName: userName,  department: department };
+        const User = {Us:'c', userName: userName,  department: department, notes: notes };
         usersdb.insertOne( User, function(err, list){
             client.emit('userInsRes', list)
         });
@@ -133,25 +134,35 @@ io.on('connection', (client)=>{
         client.emit('allUserDell')
     });
 
-/*
-    client.on('friends', function (file) {
-        const userId=file.userId;
-        const avatar= file.avatar;
-        const userName= file.userName;
-        const friendId= file.friendId;
-        const friendavatar= file.friendavatar;
-        const friendName= file.friendName;
-        const usUpdate = { friendId: userId, friendavatar: avatar, friendName: userName };
-        const frUpdate = { friendId: friendId, friendavatar: friendavatar, friendName: friendName };
-        ClientChat.findOneAndUpdate( {_id:ObjectId(userId)},{$push:{userFriends: frUpdate}} , function(err, result){
-            if (err) return console.log(err);
+    client.on('userUpdate', function (user) {
+        const userId = user.userId;
+        const userName =user.userName;
+        const notes =user.notes;
+        const department = user.department;
+        usersdb.findOneAndUpdate( {_id:ObjectId(userId)},{$set:{ userName: userName, department: department, notes: notes}}, function(err, list){
+            client.emit('userUpdateRes', list)
         });
-        ClientChat.findOneAndUpdate( {_id:ObjectId(friendId)},{$push:{userFriends: usUpdate}} , function(err, result){
-            if (err) return console.log(err);
-        });
-        client.emit('allFriends')
     });
-*/
+
+    /*
+        client.on('friends', function (file) {
+            const userId=file.userId;
+            const avatar= file.avatar;
+            const userName= file.userName;
+            const friendId= file.friendId;
+            const friendavatar= file.friendavatar;
+            const friendName= file.friendName;
+            const usUpdate = { friendId: userId, friendavatar: avatar, friendName: userName };
+            const frUpdate = { friendId: friendId, friendavatar: friendavatar, friendName: friendName };
+            ClientChat.findOneAndUpdate( {_id:ObjectId(userId)},{$push:{userFriends: frUpdate}} , function(err, result){
+                if (err) return console.log(err);
+            });
+            ClientChat.findOneAndUpdate( {_id:ObjectId(friendId)},{$push:{userFriends: usUpdate}} , function(err, result){
+                if (err) return console.log(err);
+            });
+            client.emit('allFriends')
+        });
+    */
     console.log('new connect');
 });
 

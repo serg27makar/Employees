@@ -5,6 +5,7 @@ function userIns (data){
     let user = {
         userName: data.userName,
         department: data.department,
+        notes: data.notes,
     };
 
     socket.on('userInsRes', (res, err)=>{
@@ -13,6 +14,20 @@ function userIns (data){
     socket.emit('userIns', user);
 }
 export {userIns};
+
+function userUpdate (data){
+    let user = {
+        userId: data.userId,
+        userName: data.userName,
+        department: data.department,
+        notes: data.notes,
+    };
+    socket.on('userUpdateRes', (res, err)=>{
+        console.log(err);
+    });
+    socket.emit('userUpdate', user);
+}
+export {userUpdate};
 
 
 function usersAll (call){

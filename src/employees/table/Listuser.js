@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {setActionUserId, setActionUsersList, setActionBody} from "../../actions/index"
+import {setActionBody, setActionSelectUser, setActionUserId} from "../../actions/index"
 
 class Listuser extends Component {
 
     delUser = (e) =>{
-        this.props.setUserIdFunction(e.target.value);
+        this.props.setUserIdFunction(this.props.usersList[e.target.value]._id);
         this.props.setBodyFunction('del')
     };
 
     editUser = (e) =>{
-        this.props.setUserIdFunction(e.target.value);
+        this.props.setUserSelectFunction(this.props.usersList[e.target.value]);
         this.props.setBodyFunction('edit')
     };
 
@@ -23,8 +23,8 @@ class Listuser extends Component {
                         <div className="tabNumber">{++i}</div>
                         <div className="tabEmployees">{av.userName}</div>
                         <div className="tabDepartment">{av.department}</div>
-                        <button onClick={this.editUser} value={av._id} className="butEdit">Edit</button>
-                        <button onClick={this.delUser} value={av._id} className="butDelete">Delete</button>
+                        <button onClick={this.editUser} value={this.props.usersList.indexOf(av)} className="butEdit">Edit</button>
+                        <button onClick={this.delUser} value={this.props.usersList.indexOf(av)} className="butDelete">Delete</button>
                     </div>
                 })}
             </div>
@@ -33,12 +33,9 @@ class Listuser extends Component {
     }
 }
 
-
 function MapStateToProps(state) {
     return {
         usersList: state.userInfo.usersList,
-        userId: state.userInfo.userId,
-        visibleBody: state.dbInfo.visibleBody,
     }
 }
 
@@ -47,8 +44,8 @@ const mapDispatchToProps = dispatch => {
         setUserIdFunction: (userId) => {
             dispatch(setActionUserId(userId))
         },
-        setUserListFunction: (usersList) => {
-            dispatch(setActionUsersList(usersList))
+        setUserSelectFunction: (selectUser) => {
+            dispatch(setActionSelectUser(selectUser))
         },
         setBodyFunction: (visibleBody) => {
             dispatch(setActionBody(visibleBody))

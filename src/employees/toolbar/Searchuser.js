@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {setActionVisible} from "../../actions/index"
+import {setActionBody} from "../../actions/index"
 
 class Searchuser extends Component {
     constructor(){
@@ -11,7 +11,7 @@ class Searchuser extends Component {
         }
     }
     addUser = ()=>{
-        this.props.setVisibleBarFunction(true)
+        this.props.setBodyFunction('create')
     };
     select = e =>{
         this.setState({
@@ -45,7 +45,6 @@ class Searchuser extends Component {
                 <button className="add" onClick={this.addUser}>Add</button>
             </div>
         );
-
     }
 }
 function MapStateToProps(state) {
@@ -55,8 +54,8 @@ function MapStateToProps(state) {
 }
 const mapDispatchToProps = dispatch => {
     return{
-        setVisibleBarFunction: (usersList) => {
-            dispatch(setActionVisible(usersList))
+        setBodyFunction: (visibleBody) => {
+            dispatch(setActionBody(visibleBody))
         },
     }
 };
