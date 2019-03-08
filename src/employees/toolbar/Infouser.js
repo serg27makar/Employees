@@ -16,7 +16,7 @@ class Infouser extends Component {
                 <h4>отдел :</h4>
                 <h2>{this.props.selectUser.department}</h2>
                 <h4>информация :</h4>
-                <textarea id="txtarea2" value={this.props.selectUser.notes} readOnly />
+                <textarea id="txtarea2" value={this.props.selectUser.notes || undefined} readOnly />
                 <button className="butEdit" onClick={this.exit}>выход</button>
             </div>
         );

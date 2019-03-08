@@ -55,7 +55,7 @@
 .search{
     font-size: x-large;
     margin-right: 2em;
-    margin-left: 4em;
+    margin-left: 1em;
 }
 .cancel{
     margin-left: 1em;
@@ -155,4 +155,16 @@
     width: 35em;
     height: 28em;
     top: 5em;
+}
+#input{
+    background-image: url(http://localhost:3001/resurse/zoom.jpg);
+    background-repeat: no-repeat;
+    outline: none;
+    border-radius: 5px;
+    height: 38px;
+    width: 36px;
+    font-size: 13px;
+    position: relative;
+    top: 7px;
+    margin-top: -7px;
 }

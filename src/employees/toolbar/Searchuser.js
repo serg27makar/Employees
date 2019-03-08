@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {setActionBody} from "../../actions/index"
+import {setActionBody, setActionUsersList} from "../../actions/index"
+import {findUser, usersAll, findUserDep} from '../utility/socket'
 
 class Searchuser extends Component {
     constructor(){
@@ -14,32 +15,49 @@ class Searchuser extends Component {
         this.props.setBodyFunction('create')
     };
     select = e =>{
-        this.setState({
-            sele: e.target.value
-        })
+        findUserDep(e.target.value,(res)=>{
+            this.props.setUserListFunction(res)
+        });
     };
-    search = e =>{
+    name = e =>{
         this.setState({
             name: e.target.value
+        })
+    };
+    search = () => {
+        findUser(this.state.name, (res) => {
+            this.props.setUserListFunction(res)
+        });
+    };
+
+    clear = ()=>{
+        usersAll((res)=>{
+            this.props.setUserListFunction(res)
+        });
+        this.setState({
+            sele:'',
+            name: '',
         })
     };
 
     render() {
         return (
             <div id="toolbar">
+                <button className="add" onClick={this.clear}>Clear</button>
                 <div className="search">
-                    <input type='name' name="adminName" value={this.state.serc} onChange={this.search}
+                    <input type='name' name="userName" value={this.state.name} onChange={this.name}
                            style={{fontSize: 'x-large'}}/>
+                    <button id="input" onClick={this.search}/>
                 </div>
                 <div className="select" style={{margin: '1px'}}>
                     <select onChange={this.select} style={{fontSize: '31px', borderRadius: '6px'}}>
                         <option>отдел</option>
-                        <option value="s1">программист</option>
-                        <option value="s2">менеджер</option>
-                        <option value="s3">повар</option>
-                        <option value="s4">грущик</option>
-                        <option value="s5">вахтер</option>
-                        <option value="s6">и этот</option>
+                        <option value="программист">программист</option>
+                        <option value="менеджер">менеджер</option>
+                        <option value="повар">повар</option>
+                        <option value="грущик">грущик</option>
+                        <option value="вахтер">вахтер</option>
+                        <option value="этот">и этот</option>
                     </select>
                 </div>
                 <button className="add" onClick={this.addUser}>Add</button>
@@ -56,6 +74,9 @@ const mapDispatchToProps = dispatch => {
     return{
         setBodyFunction: (visibleBody) => {
             dispatch(setActionBody(visibleBody))
+        },
+        setUserListFunction: (usersList) => {
+            dispatch(setActionUsersList(usersList))
         },
     }
 };

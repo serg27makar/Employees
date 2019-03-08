@@ -83,7 +83,7 @@ class Edit extends Component {
                     </select>
                 </div>
                 <label  style={{fontSize:'x-large'}}>полное имя</label>
-                <input type='name' name="adminName" onChange={this.name} value={this.state.name}
+                <input type='name' name="userName" onChange={this.name} value={this.state.name}
                        style={{fontSize: 'x-large', width: '23em'}}/>
                 <label  style={{fontSize:'x-large'}}>информация</label>
                 <textarea id="txtArea" onChange={this.notes} value={this.state.notes}/>

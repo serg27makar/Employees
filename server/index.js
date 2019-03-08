@@ -11,11 +11,11 @@ const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 
 let dbEmployees;
-let admindb;
 let usersdb;
 
 app.use(cors());
 
+app.use('/resurse', express.static(__dirname + '/../public/resurs'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use((request,response,next)=>{
@@ -45,7 +45,6 @@ mongoClient.connect(function(err, client){
     if(err) return console.log(err);
     dbEmployees = client;
     app.locals.collection = client.db("dbEmployees").collection("admindb");
-    admindb = client.db("dbEmployees").collection('admindb');
     usersdb = client.db("dbEmployees").collection('usersdb');
     server.listen(3001, function(){
         console.log("Сервер ожидает подключения...");
@@ -97,19 +96,18 @@ app.post("/register", function (request, response) {
 
 
 io.on('connection', (client)=>{
-    /*
-    client.on('abonents', ()=> {
-        ClientChat.find({Us: 'us'}).toArray(function (error, list) {
-            client.emit('allAbonents', list)
+
+    client.on('findUser', (user)=> {
+        usersdb.find({userName: user}).toArray(function (error, list) {
+            client.emit('allFindUser', list)
         });
     });
 
-    client.on('friendslist', (userId)=> {
-        ClientChat.find({_id:ObjectId(userId)}).toArray(function (error, list) {
-            let arr = list[0].userFriends;
-            client.emit('allfriendslist', arr)
+    client.on('findUserDep', (user)=> {
+        usersdb.find({department: user}).toArray(function (error, list) {
+            client.emit('allFindUserDep', list)
         });
-    });*/
+    });
 
     client.on('usersAll', function () {
         usersdb.find({Us:'c'}).toArray(function(err, list){
@@ -130,6 +128,8 @@ io.on('connection', (client)=>{
     client.on('userDell', function (userId) {
         usersdb.findOneAndDelete( {_id:ObjectId(userId)}, function(err, result){
             if (err) return console.log(err);
+            console.log(result);
+
         });
         client.emit('allUserDell')
     });

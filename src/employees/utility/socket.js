@@ -32,11 +32,30 @@ export {userUpdate};
 
 function usersAll (call){
     socket.on('usersAllRes', (res, err)=>{
-        call(res)
+        call(res);
+        console.log(err);
     });
     socket.emit('usersAll');
 }
 export {usersAll};
+
+function findUser (user, call){
+    socket.on('allFindUser', (res, err)=>{
+        call(res);
+        console.log(err);
+    });
+    socket.emit('findUser', user);
+}
+export {findUser};
+
+function findUserDep (user, call){
+    socket.on('allFindUserDep', (res, err)=>{
+        call(res);
+        console.log(err);
+    });
+    socket.emit('findUserDep', user);
+}
+export {findUserDep};
 
 function userDell (data){
 
