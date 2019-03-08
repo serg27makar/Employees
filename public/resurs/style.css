@@ -126,10 +126,33 @@
     border-radius: 6px;
 }
 #txtArea{
-    max-width: 46.4em;
-    min-width: 41.2em;
-    max-height: 10em;
-    min-height: 10em;
-    display: inline-table;
+    height: 10em;
+    width: 41.2em;
     font-size: medium;
+    overflow-y: auto;
+    resize: none;
+}
+#txtarea2{
+    height: 10em;
+    width: 41.2em;
+    font-size: medium;
+    overflow-y: auto;
+    resize: none;
+
+}
+#nameBut{
+    width: 14.1em;
+    background: white;
+    color: black;
+}
+#bodyInfo{
+    position: fixed;
+    border-style: groove;
+    z-index: 1;
+    background: aliceblue;
+    left: 25%;
+    padding: 10px;
+    width: 35em;
+    height: 28em;
+    top: 5em;
 }

@@ -5,6 +5,7 @@ import { setActionUsersList} from "../actions/index"
 import {usersAll} from "./utility/socket";
 import Delete from './toolbar/Delete'
 import Edit from './toolbar/Edit'
+import Infouser from './toolbar/Infouser'
 import Createuser from "./toolbar/Createuser";
 import Searchuser from "./toolbar/Searchuser";
 import Listuser from './table/Listuser'
@@ -37,6 +38,12 @@ class DataTab extends Component {
             return (
                 <div id="table">
                     <Createuser/>
+                </div>
+            );
+        }else if(this.props.visibleBody === 'inform') {
+            return (
+                <div id="table">
+                    <Infouser/>
                 </div>
             );
         }else {

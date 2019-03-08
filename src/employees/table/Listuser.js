@@ -14,6 +14,11 @@ class Listuser extends Component {
         this.props.setBodyFunction('edit')
     };
 
+    infoUser = (e) =>{
+        this.props.setUserSelectFunction(this.props.usersList[e.target.value]);
+        this.props.setBodyFunction('inform')
+    };
+
     render() {
         let i = 0;
         return (
@@ -21,7 +26,7 @@ class Listuser extends Component {
                 {this.props.usersList.map((av) => {
                     return <div id="bodyTable" key={av._id}>
                         <div className="tabNumber">{++i}</div>
-                        <div className="tabEmployees">{av.userName}</div>
+                        <button id="nameBut" onClick={this.infoUser} value={this.props.usersList.indexOf(av)} className="butEdit">{av.userName}</button>
                         <div className="tabDepartment">{av.department}</div>
                         <button onClick={this.editUser} value={this.props.usersList.indexOf(av)} className="butEdit">Edit</button>
                         <button onClick={this.delUser} value={this.props.usersList.indexOf(av)} className="butDelete">Delete</button>
