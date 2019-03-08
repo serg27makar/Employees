@@ -9,6 +9,11 @@ export default function dbInfo(state = initialState, action) {
                 ...state,
                 visibleBar: action.visibleBar
             };
+        case "SET_VISIBLEBODY":
+            return {
+                ...state,
+                visibleBody: action.visibleBody
+            };
         default:
             return state
     }

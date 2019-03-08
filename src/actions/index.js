@@ -10,6 +10,7 @@ export const setActionAdminName = (adminName) => {
         adminName: adminName
     }
 };
+
 export const setActionUserId = (userId) => {
     return {
         type: 'SET_USERID',
@@ -34,9 +35,16 @@ export const setActionUsersList = (usersList) => {
         usersList: usersList
     }
 };
+
 export const setActionVisible = (visibleBar) => {
     return {
         type: 'SET_VISIBLEBAR',
         visibleBar: visibleBar
+    }
+};
+export const setActionBody = (visibleBody) => {
+    return {
+        type: 'SET_VISIBLEBODY',
+        visibleBody: visibleBody
     }
 };

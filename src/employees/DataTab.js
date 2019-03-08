@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import Header from "./table/Header";
-import Body from "./table/Body";
 import { setActionUsersList} from "../actions/index"
 import {usersAll} from "./utility/socket";
+import Delete from './table/Delete'
+import Edit from './table/Edit'
+import Toolbar from "../employees/toolbar/Toolbar";
+import Listuser from './table/Listuser'
 
 class DataTab extends Component {
     constructor() {
@@ -12,21 +15,35 @@ class DataTab extends Component {
             this.props.setUserListFunction(res);
         })
     }
-
     render() {
-        return (
-            <div id="table">
-                <Header/>
-                <Body/>
-            </div>
-
-        );
+        if(this.props.visibleBody === 'del'){
+            return (
+                <div id="a">
+                    <Delete/>
+                </div>
+            );
+        }else if(this.props.visibleBody === 'edit'){
+            return (
+                <div id="a">
+                    <Edit/>
+                </div>
+            );
+        }else {
+            return (
+                <div id="table">
+                    <Toolbar/>
+                    <Header/>
+                    <Listuser/>
+                </div>
+            );
+        }
     }
 }
 
+
 function MapStateToProps(state) {
     return {
-        usersList: state.userInfo.usersList,
+        visibleBody: state.dbInfo.visibleBody,
     }
 }
 const mapDispatchToProps = dispatch => {

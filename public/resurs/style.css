@@ -84,3 +84,38 @@
     height: 15em;
     z-index: 1;
 }
+.butDelete{
+    border-style: groove;
+    width: 5.1em;
+    text-align: center;
+    font-size: smaller;
+    color: red;
+}
+.butEdit{
+    border-style: groove;
+    width: 5.1em;
+    text-align: center;
+    font-size: smaller;
+    color: green;
+
+}
+#bodyDelete{
+    position: fixed;
+    border-style: groove;
+    z-index: 1;
+    background: aliceblue;
+    left: 40%;
+    padding: 2em;
+    width: 25em;
+    top: 5em;
+}
+#bodyEdit{
+    position: fixed;
+    border-style: groove;
+    z-index: 1;
+    background: aliceblue;
+    left: 40%;
+    padding: 2em;
+    width: 25em;
+    top: 5em;
+}

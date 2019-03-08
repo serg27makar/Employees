@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {userIns} from "../utility/socket"
+import {userIns, usersAll} from "../utility/socket"
 import {connect} from 'react-redux'
-import {setActionVisible} from "../../actions/index"
+import {setActionVisible, setActionUsersList} from "../../actions/index"
 
 class Createuser extends Component {
     constructor(){
@@ -33,6 +33,10 @@ class Createuser extends Component {
                     department: this.state.sele,
                 };
                 userIns(user);
+                usersAll((res) => {
+                    this.props.setUserListFunction(res);
+                });
+
                 this.props.setVisibleBarFunction(false)
             }else {
                 this.setState({
@@ -46,7 +50,7 @@ class Createuser extends Component {
         }
      };
     render() {
-            return (
+        return (
                 <div id="createUser">
                     <div className="inputName">
                         <label>введите имя</label>
@@ -80,6 +84,9 @@ const mapDispatchToProps = dispatch => {
     return{
         setVisibleBarFunction: (usersList) => {
             dispatch(setActionVisible(usersList))
+        },
+        setUserListFunction: (usersList) => {
+            dispatch(setActionUsersList(usersList))
         },
     }
 };
