@@ -57,9 +57,16 @@
     margin-right: 2em;
     margin-left: 4em;
 }
-
+.cancel{
+    margin-left: 1em;
+    height: 1.7em;
+    width: 5em;
+    font-size: large;
+    background: #E91E63;
+    border-radius: 10px;
+}
 .add{
-    margin-left: 3em;
+    margin-left: 1em;
     height: 1.7em;
     width: 5em;
     font-size: large;

@@ -34,3 +34,9 @@ export const setActionUsersList = (usersList) => {
         usersList: usersList
     }
 };
+export const setActionVisible = (visibleBar) => {
+    return {
+        type: 'SET_VISIBLEBAR',
+        visibleBar: visibleBar
+    }
+};

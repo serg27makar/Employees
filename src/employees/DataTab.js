@@ -6,13 +6,12 @@ import { setActionUsersList} from "../actions/index"
 import {usersAll} from "./utility/socket";
 
 class DataTab extends Component {
-    constructor(){
+    constructor() {
         super();
-        usersAll(this.call)
+        usersAll((res) => {
+            this.props.setUserListFunction(res);
+        })
     }
-    call = (res)=>{
-        this.props.setUserListFunction(res);
-    };
 
     render() {
         return (
@@ -25,14 +24,11 @@ class DataTab extends Component {
     }
 }
 
-
-
 function MapStateToProps(state) {
     return {
         usersList: state.userInfo.usersList,
     }
 }
-
 const mapDispatchToProps = dispatch => {
     return{
         setUserListFunction: (usersList) => {
