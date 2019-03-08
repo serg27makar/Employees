@@ -22,7 +22,25 @@ class Login extends Component {
         this.setState({ Password: event.target.value });
     };
 
-    handleSubmit = event => {
+    handleSubmitLogin = event => {
+        event.preventDefault();
+        let variant = {
+            direct: 'login',
+            Name: this.state.adminName,
+            password: this.state.Password
+        };
+        utilityServerLogin(variant, (info)=>{
+            if (info.adminId) {
+                this.props.setAdminIdFunction(info.adminId);
+                this.props.setAdminNameFunction(info.adminName);
+            }
+            this.setState({
+                txt: info.txt
+            })
+        })
+    };
+
+    handleSubmitRegister = event => {
         event.preventDefault();
         let variant = {
             direct: 'register',
@@ -46,15 +64,17 @@ class Login extends Component {
             }
         }
         return (
-            <div className="Login">
-                <form onSubmit={this.handleSubmit}>
-                        <legend>Enter name:</legend>
-                        <input type='name' name="adminName" value={this.state.adminName} onChange={this.handleChangeE} style={{fontSize: 'x-large'}} />
-                        <legend>Enter password:</legend>
-                        <input type='password' name="Password" value={this.state.Password} onChange={this.handleChangeP} style={{fontSize: 'x-large'}}/>
+            <div className="login">
+                <form>
+                    <legend>Enter name:</legend>
+                    <input className='logInp' type='name' name="userName" value={this.state.adminName} onChange={this.handleChangeE}  />
+                    <legend>Enter password:</legend>
+                    <input className='logInp' type='password' name="Password" value={this.state.Password} onChange={this.handleChangeP}/>
                     <br/>
-                    <button type="submit" id="sendRegister">Login</button>
+                    <button className="add" onClick={this.handleSubmitLogin}>Login</button>
+                    <button className="add" onClick={this.handleSubmitRegister}>Register</button>
                 </form>
+                <h3>{this.state.txt}</h3>
             </div>
         )
     }

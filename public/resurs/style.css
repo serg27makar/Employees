@@ -168,3 +168,18 @@
     top: 7px;
     margin-top: -7px;
 }
+.login{
+    border-style: groove;
+    border-radius: 5px;
+    height: 15em;
+    width: 28em;
+    position: fixed;
+    left: 30%;
+    top: 5em;
+    text-align: center;
+    padding: 2em;
+}
+.logInp{
+    margin: 0.5em;
+    font-size: x-large;
+}
