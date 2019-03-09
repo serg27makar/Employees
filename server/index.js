@@ -144,25 +144,6 @@ io.on('connection', (client)=>{
         });
     });
 
-    /*
-        client.on('friends', function (file) {
-            const userId=file.userId;
-            const avatar= file.avatar;
-            const userName= file.userName;
-            const friendId= file.friendId;
-            const friendavatar= file.friendavatar;
-            const friendName= file.friendName;
-            const usUpdate = { friendId: userId, friendavatar: avatar, friendName: userName };
-            const frUpdate = { friendId: friendId, friendavatar: friendavatar, friendName: friendName };
-            ClientChat.findOneAndUpdate( {_id:ObjectId(userId)},{$push:{userFriends: frUpdate}} , function(err, result){
-                if (err) return console.log(err);
-            });
-            ClientChat.findOneAndUpdate( {_id:ObjectId(friendId)},{$push:{userFriends: usUpdate}} , function(err, result){
-                if (err) return console.log(err);
-            });
-            client.emit('allFriends')
-        });
-    */
     console.log('new connect');
 });
 

@@ -4,7 +4,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div id="headTable">
+            <div id="bodyTable">
                 <div className="tabNumber">#</div>
                 <div className="tabEmployees">Employees</div>
                 <div className="tabDepartment">Department</div>

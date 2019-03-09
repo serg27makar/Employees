@@ -1,3 +1,10 @@
+#border{
+    border-style: solid;
+    border-width: 2px;
+    width: 47.7em;
+    position: fixed;
+    left: 20%;
+}
 #headTable {
     display: flex;
     font-size: 25px;
@@ -8,38 +15,42 @@
     display: flex;
     font-size: 25px;
     position: relative;
-    left: 20%;
 }
 
 .tabNumber{
-    border-style: groove;
+    border-style: solid;
+    border-width: 1px;
     width: 2em;
-    max-width: 2em;
+    max-width: 1em;
     text-align: center;
 }
 
 .tabEmployees{
-    border-style: groove;
+    border-style: solid;
+    border-width: 1px;
     width: 15em;
     max-width: 15em;
     text-align: center;
 }
 
 .tabDepartment{
-    border-style: groove;
-    width: 10em;
+    border-style: solid;
+    border-width: 1px;
+    width: 9.9em;
     max-width: 10em;
     text-align: center;
 }
 
-.tabEdit{
-    border-style: groove;
+.tabEdit {
+    border-style: solid;
+    border-width: 1px;
     width: 4em;
     text-align: center;
-}
 
-.tabDelete{
-    border-style: groove;
+}
+.tabDelete {
+    border-style: solid;
+    border-width: 1px;
     width: 4em;
     text-align: center;
 }
@@ -85,19 +96,24 @@
     top: 5em;
 }
 .butDelete{
-    border-style: groove;
-    width: 3.95em;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    width: 3.77em;
     text-align: center;
     font-size: x-large;
     color: red;
+    background: white;
 }
 .butEdit{
-    border-style: groove;
-    width: 3.95em;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    width: 3.8em;
     text-align: center;
     font-size: x-large;
     color: green;
-
+    background: white;
 }
 #bodyDelete{
     position: fixed;
@@ -141,7 +157,10 @@
 
 }
 #nameBut{
-    width: 14.1em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    width: 13.95em;
     background: white;
     color: black;
 }

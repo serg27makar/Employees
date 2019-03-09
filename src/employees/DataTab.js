@@ -50,8 +50,10 @@ class DataTab extends Component {
             return (
                 <div id="table">
                     <Searchuser/>
-                    <Header/>
-                    <Listuser/>
+                    <div id="border">
+                        <Header/>
+                        <Listuser/>
+                    </div>
                 </div>
             );
         }
