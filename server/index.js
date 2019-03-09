@@ -97,6 +97,14 @@ app.post("/register", function (request, response) {
 
 io.on('connection', (client)=>{
 
+    client.on('findDouble', (user)=> {
+        const userName = user.userName;
+        const department = user.department;
+        usersdb.find({userName: userName, department: department}).toArray(function (error, list) {
+            client.emit('allFindDouble', list)
+        });
+    });
+
     client.on('findUser', (user)=> {
         usersdb.find({userName: user}).toArray(function (error, list) {
             client.emit('allFindUser', list)

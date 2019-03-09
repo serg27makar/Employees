@@ -60,13 +60,14 @@
     left: 20%;
     display: flex;
     font-size: 30px;
-    margin: 1em 0;
+    margin: 1em 1.5em;
+    width: 30em;
 }
 
 .search{
     font-size: x-large;
-    margin-right: 2em;
-    margin-left: 1em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
 }
 .cancel{
     margin-left: 1em;
@@ -83,6 +84,13 @@
     font-size: large;
     background: cornflowerblue;
     border-radius: 10px;
+}
+.all{
+    border-radius: 5px;
+    height: 38px;
+    width: 36px;
+    position: relative;
+    top: -4px;
 }
 #createUser{
     position: fixed;

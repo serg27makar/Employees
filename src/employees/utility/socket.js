@@ -48,6 +48,15 @@ function findUser (user, call){
 }
 export {findUser};
 
+function findDouble (user, call){
+    socket.on('allFindDouble', (res, err)=>{
+        call(res);
+        console.log(err);
+    });
+    socket.emit('findDouble', user);
+}
+export {findDouble};
+
 function findUserDep (user, call){
     socket.on('allFindUserDep', (res, err)=>{
         call(res);
