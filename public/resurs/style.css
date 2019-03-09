@@ -1,9 +1,10 @@
 #border{
     border-style: solid;
     border-width: 2px;
-    width: 47.7em;
+    width: 49.1em;
     position: fixed;
     left: 20%;
+    max-height: 21.11em;
 }
 #headTable {
     display: flex;
@@ -113,6 +114,7 @@
     color: red;
     background: white;
 }
+
 .butEdit{
     border-style: solid;
     border-color: black;
@@ -209,4 +211,16 @@
 .logInp{
     margin: 0.5em;
     font-size: x-large;
+}
+#underBorder{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 19.37em;
+    width: 49em;
+}
+
+#a{
+    height: 31px;
+    width: 26px;
+    background: #f1f1f1;
 }

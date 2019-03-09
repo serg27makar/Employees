@@ -25,7 +25,7 @@ class Login extends Component {
     handleSubmitLogin = event => {
         event.preventDefault();
         let variant = {
-            direct: 'login',
+            direct: event.target.value,
             Name: this.state.adminName,
             password: this.state.Password
         };
@@ -39,25 +39,7 @@ class Login extends Component {
             })
         })
     };
-
-    handleSubmitRegister = event => {
-        event.preventDefault();
-        let variant = {
-            direct: 'register',
-            Name: this.state.adminName,
-            password: this.state.Password
-        };
-        utilityServerLogin(variant, (info)=>{
-            if (info.adminId) {
-                this.props.setAdminIdFunction(info.adminId);
-                this.props.setAdminNameFunction(info.adminName);
-            }
-            this.setState({
-                txt: info.txt
-            })
-        })
-    };
-    render() {
+     render() {
         if (this.props.adminId) {
             if (this.props.adminId.length === 24) {
                 return <Redirect to='/employees'/>
@@ -65,15 +47,13 @@ class Login extends Component {
         }
         return (
             <div className="login">
-                <form>
-                    <legend>Enter name:</legend>
-                    <input className='logInp' type='name' name="userName" value={this.state.adminName} onChange={this.handleChangeE}  />
-                    <legend>Enter password:</legend>
-                    <input className='logInp' type='password' name="Password" value={this.state.Password} onChange={this.handleChangeP}/>
-                    <br/>
-                    <button className="add" onClick={this.handleSubmitLogin}>Login</button>
-                    <button className="add" onClick={this.handleSubmitRegister}>Register</button>
-                </form>
+                <legend>Enter name:</legend>
+                <input className='logInp' type='name' name="userName" value={this.state.adminName} onChange={this.handleChangeE}  />
+                <legend>Enter password:</legend>
+                <input className='logInp' type='password' name="Password" value={this.state.Password} onChange={this.handleChangeP}/>
+                <br/>
+                <button className="add" onClick={this.handleSubmitLogin} value='login'>Login</button>
+                <button className="add" onClick={this.handleSubmitLogin} value='register'>Register</button>
                 <h3>{this.state.txt}</h3>
             </div>
         )

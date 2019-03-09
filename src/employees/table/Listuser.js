@@ -24,7 +24,7 @@ class Listuser extends Component {
     render() {
         let i = 0;
         return (
-            <div id="a">
+            <div id="underBorder">
                 {this.props.usersList.map((av) => {
                     return <div id="bodyTable" key={av._id}>
                         <div className="tabNumber">{++i}</div>
