@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {setActionBody, setActionUsersList} from "../../actions/index"
-import {findUser, usersAll, findUserDep, findDouble} from '../utility/socket'
+import {usersAll} from '../utility/socket'
+import {search} from "./toolfunctions/toolFun"
 
 class Searchuser extends Component {
     constructor(){
@@ -25,32 +26,20 @@ class Searchuser extends Component {
         })
     };
     search = () => {
-        if(this.state.sele !== '' && this.state.name !== '') {
-            let user = {
-                userName: this.state.name,
-                department: this.state.sele,
-            };
-            findDouble(user,(res) => {
-                this.props.setUserListFunction(res)
-            })
-        }else if(this.state.sele === '' && this.state.name !== '') {
-            findUser(this.state.name, (res) => {
-                this.props.setUserListFunction(res)
-            })
-        }else if(this.state.sele !== '' && this.state.name === '') {
-            findUserDep(this.state.sele, (res) => {
-                this.props.setUserListFunction(res)
-            })
-        }else if(this.state.sele === '' && this.state.name === '') {
-            usersAll((res)=>{
-                this.props.setUserListFunction(res)
-            });
-        }
+        let user = {
+            name: this.state.name,
+            sele: this.state.sele,
+        };
+        this.props.setSearch(user)
     };
+
     clear =()=>{
         usersAll((res)=>{
             this.props.setUserListFunction(res)
         });
+        this.setState({
+            name: '',
+        })
     };
 
     render() {
@@ -91,7 +80,10 @@ const mapDispatchToProps = dispatch => {
         setUserListFunction: (usersList) => {
             dispatch(setActionUsersList(usersList))
         },
-    }
+        setSearch: (data)=>{
+            search(data,dispatch)
+        }
+   }
 };
 
 export default connect(MapStateToProps, mapDispatchToProps)(Searchuser);

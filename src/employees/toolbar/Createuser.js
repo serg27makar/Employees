@@ -1,61 +1,50 @@
 import React, { Component } from 'react';
-import {userIns, usersAll} from "../utility/socket"
 import {connect} from 'react-redux'
 import {setActionUsersList, setActionBody} from "../../actions/index"
+import {createUser} from "./toolfunctions/toolFun"
 
 class Createuser extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            sele:'',
+        this.state = {
+            sele: '',
             name: '',
-            txt:'',
-            notes:'',
+            txt: '',
+            notes: '',
         }
     }
-    select = e =>{
+
+    select = e => {
         this.setState({
             sele: e.target.value
         })
     };
-    name = e =>{
+    name = e => {
         this.setState({
             name: e.target.value
         })
     };
-    notes = e =>{
+    notes = e => {
         this.setState({
             notes: e.target.value
         })
     };
-    cancel =()=>{
+    cancel = () => {
         this.props.setBodyFunction('')
     };
     createUser = ()=>{
-        if (this.state.name){
-            if(this.state.sele !== ''){
-                let user = {
-                    userName: this.state.name,
-                    department: this.state.sele,
-                    notes: this.state.notes,
-                };
-                userIns(user);
-                usersAll((res) => {
-                    this.props.setUserListFunction(res);
-                });
-
-                this.props.setBodyFunction('')
-            }else {
-                this.setState({
-                    txt: 'выберите отдел'
-                })
-            }
-        }else {
+        let user = {
+            name: this.state.name,
+            sele: this.state.sele,
+            notes: this.state.notes,
+        };
+        this.props.setCreateUser(user,(res)=>{
             this.setState({
-                txt: 'введите имя'
+                txt: res
             })
-        }
-     };
+        })
+    };
+
     render() {
         return (
             <div id="createUser">
@@ -91,13 +80,16 @@ function MapStateToProps(state) {
     }
 }
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         setBodyFunction: (visibleBody) => {
             dispatch(setActionBody(visibleBody))
         },
         setUserListFunction: (usersList) => {
             dispatch(setActionUsersList(usersList))
         },
+        setCreateUser: (data,call)=>{
+            createUser(data,dispatch,call)
+        }
     }
 };
 

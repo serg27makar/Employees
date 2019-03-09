@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { setActionUsersList, setActionBody} from "../../actions/index"
-import {usersAll, userUpdate} from "../utility/socket"
+import {edit} from "./toolfunctions/toolFun"
 
 class Edit extends Component {
     constructor(){
@@ -29,32 +29,19 @@ class Edit extends Component {
         })
     };
     edit = ()=>{
-        if (this.state.name){
-            if(this.state.sele !== ''){
-                let user = {
-                    userId: this.props.selectUser._id,
-                    userName: this.state.name,
-                    department: this.state.sele,
-                    notes: this.state.notes,
-                };
-                userUpdate(user);
-                usersAll((res) => {
-                    this.props.setUserListFunction(res);
-                });
-
-                this.props.setBodyFunction('')
-            }else {
-                this.setState({
-                    txt: 'выберите отдел'
-                })
-            }
-        }else {
+        let user = {
+            userId: this.props.selectUser._id,
+            userName: this.state.name,
+            department: this.state.sele,
+            notes: this.state.notes,
+        };
+        this.props.setEditUser(user,(res)=>{
             this.setState({
-                txt: 'введите имя'
+                txt: res
             })
-        }
-    };
 
+        })
+    };
     cancel = () =>{
         this.props.setBodyFunction('')
     };
@@ -64,7 +51,6 @@ class Edit extends Component {
             name: this.props.selectUser.userName,
             txt:'',
             notes: this.props.selectUser.notes || undefined,
-
         })
     }
 
@@ -94,7 +80,6 @@ class Edit extends Component {
     }
 }
 
-
 function MapStateToProps(state) {
     return {
         usersList: state.userInfo.usersList,
@@ -104,7 +89,6 @@ function MapStateToProps(state) {
         selectUser: state.userInfo.selectUser,
     }
 }
-
 const mapDispatchToProps = dispatch => {
     return{
         setUserListFunction: (usersList) => {
@@ -113,8 +97,10 @@ const mapDispatchToProps = dispatch => {
         setBodyFunction: (visibleBody) => {
             dispatch(setActionBody(visibleBody))
         },
+        setEditUser: (data,call)=>{
+            edit(data,dispatch,call)
+        }
     }
 };
 
 export default connect(MapStateToProps, mapDispatchToProps)(Edit);
-
