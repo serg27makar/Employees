@@ -14,13 +14,11 @@ class Searchuser extends Component {
     addUser = ()=>{
         this.props.setBodyFunction('create')
     };
-
     select = e =>{
         this.setState({
             sele: e.target.value,
         });
     };
-
     name = e =>{
         this.setState({
             name: e.target.value
@@ -47,8 +45,12 @@ class Searchuser extends Component {
             usersAll((res)=>{
                 this.props.setUserListFunction(res)
             });
-
         }
+    };
+    clear =()=>{
+        usersAll((res)=>{
+            this.props.setUserListFunction(res)
+        });
     };
 
     render() {

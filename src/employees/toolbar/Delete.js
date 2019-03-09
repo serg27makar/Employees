@@ -20,7 +20,9 @@ class Delete extends Component {
     render() {
         return(
             <div id="bodyDelete">
-                <h4>Вы действительно хотите удалить этого сотрудника</h4>
+                <h3>Вы действительно хотите удалить этого сотрудника</h3>
+                <h3>{this.props.userName}</h3>
+                <h4>Он профисиональный : {this.props.department}</h4>
                 <button onClick={this.delet} className="butEdit">Delete</button>
                 <button onClick={this.cancel} className="butDelete">Cancel</button>
             </div>
@@ -32,6 +34,8 @@ function MapStateToProps(state) {
     return {
         usersList: state.userInfo.usersList,
         userId: state.userInfo.userId,
+        userName: state.userInfo.userName,
+        department: state.userInfo.department,
         visibleBody: state.dbInfo.visibleBody,
     }
 }

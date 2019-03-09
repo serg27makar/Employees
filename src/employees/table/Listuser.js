@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {setActionBody, setActionSelectUser, setActionUserId} from "../../actions/index"
+import {setActionBody, setActionSelectUser, setActionUserId, setActionUserName, setActionDepartment} from "../../actions/index"
 
 class Listuser extends Component {
 
     delUser = (e) =>{
         this.props.setUserIdFunction(this.props.usersList[e.target.value]._id);
+        this.props.setUserNameFunction(this.props.usersList[e.target.value].userName);
+        this.props.setUserDepFunction(this.props.usersList[e.target.value].department);
         this.props.setBodyFunction('del')
     };
 
@@ -48,6 +50,12 @@ const mapDispatchToProps = dispatch => {
     return{
         setUserIdFunction: (userId) => {
             dispatch(setActionUserId(userId))
+        },
+        setUserNameFunction: (userName) => {
+            dispatch(setActionUserName(userName))
+        },
+        setUserDepFunction: (department) => {
+            dispatch(setActionDepartment(department))
         },
         setUserSelectFunction: (selectUser) => {
             dispatch(setActionSelectUser(selectUser))
